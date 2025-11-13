@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Navigation এর জন্য import
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const UpdateModal = ({ property, onClose, onUpdated }) => {
   const [formData, setFormData] = useState({
     ...property,
-    _id: property._id, 
+    _id: property._id,
   });
+
+  const navigate = useNavigate(); // ✅ Navigation hook
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +24,7 @@ const UpdateModal = ({ property, onClose, onUpdated }) => {
         Swal.fire("Updated!", "Your property has been updated.", "success");
         onUpdated(formData);
         onClose();
+        navigate(`/estates-details/${property._id}`); // ✅ Navigate to details page
       } else {
         Swal.fire("No Changes", "No fields were modified.", "info");
       }
@@ -123,4 +127,5 @@ const UpdateModal = ({ property, onClose, onUpdated }) => {
 };
 
 export default UpdateModal;
+
 
