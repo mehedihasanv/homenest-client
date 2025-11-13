@@ -46,7 +46,7 @@ const AddProperties = () => {
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to add property.");
+      toast.error("Failed to add property.");
     }
   };
 
