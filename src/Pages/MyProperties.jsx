@@ -85,7 +85,7 @@ const MyProperties = () => {
 
               <div className="flex gap-2 mt-4">
                 <button
-                  onClick={() => navigate(`/property/${property._id}`)}
+                  onClick={() => navigate(`/estates-details/${property._id}`)}
                   className="btn btn-sm bg-blue-500 text-white"
                 >
                   View Details

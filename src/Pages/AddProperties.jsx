@@ -51,10 +51,10 @@ const AddProperties = () => {
   };
 
   return (
-    <section className="py-16 px-4 md:px-8 bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen">
-      <div className="max-w-3xl mx-auto bg-white p-10 rounded-xl shadow-lg">
-        <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">📝 Add New Property</h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
+    <section className="py-6 px-3 md:px-6 bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen">
+      <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">📝 Add New Property</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
             name="propertyName"
@@ -62,7 +62,7 @@ const AddProperties = () => {
             value={formData.propertyName}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <textarea
             name="description"
@@ -70,14 +70,14 @@ const AddProperties = () => {
             value={formData.description}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <select
             name="category"
             value={formData.category}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">📂 Select Category</option>
             <option value="Rent">Rent</option>
@@ -92,7 +92,7 @@ const AddProperties = () => {
             value={formData.price}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="text"
@@ -101,7 +101,7 @@ const AddProperties = () => {
             value={formData.location}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="text"
@@ -110,7 +110,7 @@ const AddProperties = () => {
             value={formData.image}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="date"
@@ -118,11 +118,11 @@ const AddProperties = () => {
             value={formData.postedDate}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+            className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition duration-300"
           >
             Add Property
           </button>
@@ -133,3 +133,4 @@ const AddProperties = () => {
 };
 
 export default AddProperties;
+
