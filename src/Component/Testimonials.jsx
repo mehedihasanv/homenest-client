@@ -4,19 +4,19 @@ const Testimonials = () => {
       name: "Farhana Rahman",
       role: "Property Owner",
       comment: "HomeNest helped me rent out my apartment within days. The platform is easy and reliable!",
-      image: "https://i.ibb.co/0jqHpnp/default-avatar.png",
+      image: "https://randomuser.me/api/portraits/women/44.jpg",
     },
     {
       name: "Tanvir Ahmed",
       role: "Buyer",
       comment: "I found my dream home through HomeNest. The filters and search options are super helpful.",
-      image: "https://i.ibb.co/0jqHpnp/default-avatar.png",
+      image: "https://randomuser.me/api/portraits/men/32.jpg",
     },
     {
       name: "Nusrat Jahan",
       role: "Renter",
       comment: "The listings are verified and the support team is very responsive. Highly recommended!",
-      image: "https://i.ibb.co/0jqHpnp/default-avatar.png",
+      image: "https://randomuser.me/api/portraits/women/68.jpg",
     },
   ];
 

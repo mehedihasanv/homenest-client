@@ -94,7 +94,6 @@ const EstatesDetails = () => {
           </form>
         )}
 
-      
       </div>
     </div>
   );
