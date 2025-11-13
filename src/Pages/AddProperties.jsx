@@ -1,7 +1,7 @@
-// AddProperty.jsx
 import { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const AddProperties = () => {
   const { user } = useContext(AuthContext);
@@ -23,19 +23,17 @@ const AddProperties = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Optional: Add user info if using auth
     const propertyData = {
       ...formData,
-     userEmail: user?.email,
-userName: user?.displayName || "Anonymous",
-         // Replace with actual logged-in user
+      userEmail: user?.email,
+      userName: user?.displayName || "Anonymous",
     };
 
     try {
       const res = await axios.post("http://localhost:3000/estates", propertyData);
 
       if (res.data.insertedId) {
-        alert("Property added successfully!");
+        toast.success("Property added successfully!");
         setFormData({
           propertyName: "",
           description: "",
@@ -53,35 +51,35 @@ userName: user?.displayName || "Anonymous",
   };
 
   return (
-    <section className="py-12 px-4 md:px-8 bg-gray-50">
-      <div className="max-w-3xl mx-auto bg-white p-8 rounded shadow">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Add New Property</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <section className="py-16 px-4 md:px-8 bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen">
+      <div className="max-w-3xl mx-auto bg-white p-10 rounded-xl shadow-lg">
+        <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">📝 Add New Property</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <input
             type="text"
             name="propertyName"
-            placeholder="Property Name"
+            placeholder="🏠 Property Name"
             value={formData.propertyName}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded"
+            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <textarea
             name="description"
-            placeholder="Description"
+            placeholder="🖊️ Description"
             value={formData.description}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded"
+            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <select
             name="category"
             value={formData.category}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded"
+            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="">Select Category</option>
+            <option value="">📂 Select Category</option>
             <option value="Rent">Rent</option>
             <option value="Sale">Sale</option>
             <option value="Commercial">Commercial</option>
@@ -90,29 +88,29 @@ userName: user?.displayName || "Anonymous",
           <input
             type="number"
             name="price"
-            placeholder="Price (৳)"
+            placeholder="💰 Price (৳)"
             value={formData.price}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded"
+            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="text"
             name="location"
-            placeholder="Location"
+            placeholder="📍 Location"
             value={formData.location}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded"
+            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="text"
             name="image"
-            placeholder="Image URL"
+            placeholder="🖼️ Image URL"
             value={formData.image}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded"
+            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="date"
@@ -120,13 +118,13 @@ userName: user?.displayName || "Anonymous",
             value={formData.postedDate}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded"
+            className="w-full border border-gray-300 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="submit"
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300"
           >
-            Submit Property
+            Add Property
           </button>
         </form>
       </div>
