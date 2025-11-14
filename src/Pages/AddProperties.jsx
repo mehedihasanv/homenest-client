@@ -30,7 +30,10 @@ const AddProperties = () => {
     };
 
     try {
-      const res = await axios.post("http://localhost:3000/estates", propertyData);
+      const res = await axios.post(
+        "https://homenest-server-eight.vercel.app/estates",
+        propertyData
+      );
 
       if (res.data.insertedId) {
         toast.success("Property added successfully!");
@@ -53,7 +56,9 @@ const AddProperties = () => {
   return (
     <section className="py-6 px-3 md:px-6 bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen">
       <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">📝 Add New Property</h2>
+        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+          📝 Add New Property
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
@@ -133,4 +138,3 @@ const AddProperties = () => {
 };
 
 export default AddProperties;
-

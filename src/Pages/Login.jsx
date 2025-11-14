@@ -31,7 +31,7 @@ const Login = () => {
 
   const saveUserToDB = async (userData) => {
     try {
-      await fetch("http://localhost:3000/users", {
+      await fetch("https://homenest-server-eight.vercel.app/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),

@@ -13,54 +13,59 @@ import ForgetPassword from "../Component/ForgetPassword";
 import PrivateRoute from "./PrivateRoutes";
 import EstatesDetails from "../Component/EstatesDetails";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<MainLayout></MainLayout>,
-    errorElement:<Error></Error> ,
-     hydrateFallbackElement:<p className='absolute top-52'>Loading.....</p>,
+    element: <MainLayout></MainLayout>,
+    errorElement: <Error></Error>,
+    hydrateFallbackElement: <p className="absolute top-52">Loading.....</p>,
     children: [
       {
-        path: "/",       
-        element: <Home/>,
-        loader:() =>fetch ('http://localhost:3000/home-features')
+        path: "/",
+        element: <Home />,
+        loader: () =>
+          fetch("https://homenest-server-eight.vercel.app/home-features"),
       },
       {
-        path:"/properties",
-        element:<AllProperties></AllProperties>
-        ,
-        loader:() =>fetch ('http://localhost:3000/estates')
+        path: "/properties",
+        element: <AllProperties></AllProperties>,
+        loader: () => fetch("https://homenest-server-eight.vercel.app/estates"),
       },
       {
-        path:"/add-property",
-        element:<PrivateRoute>
-             <AddProperties></AddProperties>
-        </PrivateRoute>
-         
-        
+        path: "/add-property",
+        element: (
+          <PrivateRoute>
+            <AddProperties></AddProperties>
+          </PrivateRoute>
+        ),
       },
-       {
-            path:"/my-properties",
-            element: <PrivateRoute>
-
-                <MyProperties></MyProperties>
-            </PrivateRoute>
-          },
-          {
+      {
+        path: "/my-properties",
+        element: (
+          <PrivateRoute>
+            <MyProperties></MyProperties>
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/my-ratings",
-        element:<PrivateRoute>
-
+        element: (
+          <PrivateRoute>
             <MyRatings></MyRatings>,
-        </PrivateRoute>
+          </PrivateRoute>
+        ),
       },
-          {
+      {
         path: "/estates-details/:id",
-        element:<PrivateRoute>
-
+        element: (
+          <PrivateRoute>
             <EstatesDetails></EstatesDetails>
-        </PrivateRoute>,
-         loader:({params}) =>fetch (`http://localhost:3000/estates/${params.id}`)
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://homenest-server-eight.vercel.app/estates/${params.id}`
+          ),
       },
       {
         path: "/login",
@@ -72,15 +77,11 @@ const router = createBrowserRouter([
       },
 
       {
-  path: "/forget-password",
-  element: <ForgetPassword />
-}
-
-      
-    ]
-  }
+        path: "/forget-password",
+        element: <ForgetPassword />,
+      },
+    ],
+  },
 ]);
 
 export default router;
-
-

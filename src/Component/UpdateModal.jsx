@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -9,7 +9,7 @@ const UpdateModal = ({ property, onClose, onUpdated }) => {
     _id: property._id,
   });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,12 +19,15 @@ const UpdateModal = ({ property, onClose, onUpdated }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`http://localhost:3000/estates/${property._id}`, formData);
+      const res = await axios.put(
+        `https://homenest-server-eight.vercel.app/estates/${property._id}`,
+        formData
+      );
       if (res.data.modifiedCount > 0 || res.data.acknowledged) {
         Swal.fire("Updated!", "Your property has been updated.", "success");
         onUpdated(formData);
         onClose();
-        navigate(`/estates-details/${property._id}`); 
+        navigate(`/estates-details/${property._id}`);
       } else {
         Swal.fire("No Changes", "No fields were modified.", "info");
       }
@@ -37,7 +40,9 @@ const UpdateModal = ({ property, onClose, onUpdated }) => {
   return (
     <div className="fixed inset-0 bg-blue-100 bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-2xl">
-        <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">✏️ Update Property</h2>
+        <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
+          ✏️ Update Property
+        </h2>
         <form onSubmit={handleUpdate} className="space-y-4">
           <input
             name="propertyName"
@@ -127,5 +132,3 @@ const UpdateModal = ({ property, onClose, onUpdated }) => {
 };
 
 export default UpdateModal;
-
-

@@ -13,7 +13,9 @@ const MyProperties = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/estates?email=${user.email}`)
+      fetch(
+        `https://homenest-server-eight.vercel.app/estates?email=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setProperties(data);
@@ -37,7 +39,7 @@ const MyProperties = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/estates/${id}`, {
+        fetch(`https://homenest-server-eight.vercel.app/estates/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -75,12 +77,27 @@ const MyProperties = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {properties.map((property) => (
-            <div key={property._id} className="border rounded-lg p-4 shadow hover:shadow-lg transition">
-              <img src={property.image} alt={property.propertyName} className="h-48 w-full object-cover rounded" />
-              <h3 className="text-lg font-semibold mt-2">{property.propertyName}</h3>
-              <p className="text-sm text-gray-600">Category: {property.category}</p>
-              <p className="text-sm text-gray-600">Location: {property.location}</p>
-              <p className="text-sm text-gray-600">Posted: {new Date(property.postedDate).toLocaleDateString()}</p>
+            <div
+              key={property._id}
+              className="border rounded-lg p-4 shadow hover:shadow-lg transition"
+            >
+              <img
+                src={property.image}
+                alt={property.propertyName}
+                className="h-48 w-full object-cover rounded"
+              />
+              <h3 className="text-lg font-semibold mt-2">
+                {property.propertyName}
+              </h3>
+              <p className="text-sm text-gray-600">
+                Category: {property.category}
+              </p>
+              <p className="text-sm text-gray-600">
+                Location: {property.location}
+              </p>
+              <p className="text-sm text-gray-600">
+                Posted: {new Date(property.postedDate).toLocaleDateString()}
+              </p>
               <p className="text-blue-600 font-bold mt-1">${property.price}</p>
 
               <div className="flex gap-2 mt-4">

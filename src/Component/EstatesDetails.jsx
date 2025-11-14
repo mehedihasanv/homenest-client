@@ -12,7 +12,9 @@ const EstatesDetails = () => {
 
   // Load existing reviews
   useEffect(() => {
-    fetch(`http://localhost:3000/reviews?propertyId=${estates._id}`)
+    fetch(
+      `https://homenest-server-eight.vercel.app/reviews?propertyId=${estates._id}`
+    )
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [estates._id]);
@@ -31,7 +33,7 @@ const EstatesDetails = () => {
       date: new Date().toISOString(),
     };
 
-    fetch("http://localhost:3000/reviews", {
+    fetch("https://homenest-server-eight.vercel.app/reviews", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(reviewData),
@@ -47,7 +49,11 @@ const EstatesDetails = () => {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4">{estates.propertyName}</h1>
-      <img src={estates.image} alt="" className="w-full h-64 object-cover rounded" />
+      <img
+        src={estates.image}
+        alt=""
+        className="w-full h-64 object-cover rounded"
+      />
 
       <p className="text-sm text-gray-500 mt-2">Category: {estates.category}</p>
       <p className="text-sm text-gray-500">Location: {estates.location}</p>
@@ -56,7 +62,9 @@ const EstatesDetails = () => {
         Posted on: {new Date(estates.postedDate).toLocaleDateString()}
       </p>
 
-      <p className="text-lg font-semibold text-blue-600 mt-2">${estates.price}</p>
+      <p className="text-lg font-semibold text-blue-600 mt-2">
+        ${estates.price}
+      </p>
       <p className="mt-4">{estates.description}</p>
 
       {/* ⭐ Rating & Review Section */}
@@ -88,16 +96,17 @@ const EstatesDetails = () => {
               className="w-full border px-3 py-2 rounded"
             />
 
-            <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded"
+            >
               Submit Review
             </button>
           </form>
         )}
-
       </div>
     </div>
   );
 };
 
 export default EstatesDetails;
-
