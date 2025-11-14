@@ -1,15 +1,28 @@
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, signOutFunction } = useContext(AuthContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+
+  useEffect(() => {
+    const html = document.querySelector('html')
+     html.setAttribute("data-theme", theme)
+     localStorage.setItem("theme", theme)
+  }, [theme])
+
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark": "light")
+  }
 
   const handleLogout = () => {
     signOutFunction()
-      .then(() => alert("Logged out successfully"))
-      .catch((err) => alert("Logout failed"));
+      .then(() => toast.success("Logged out successfully"))
+      .catch((err) => toast.error("Logout failed"));
   };
 
   return (
@@ -35,6 +48,7 @@ const Navbar = () => {
               <NavLink to="/add-property" className="hover:text-blue-500">Add Property</NavLink>
               <NavLink to="/my-properties" className="hover:text-blue-500">My Properties</NavLink>
               <NavLink to="/my-ratings" className="hover:text-blue-500">My Ratings</NavLink>
+              
         </ul>
 
         {/* Mobile Menu */}
@@ -78,14 +92,26 @@ const Navbar = () => {
               />
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-56 bg-white border rounded-lg shadow-lg z-50 p-4">
+                  
                   <p className="text-sm font-semibold text-gray-800">{user.displayName}</p>
                   <p className="text-xs text-gray-500 mb-3">{user.email}</p>
+                  <div className="flex justify-between">
+                          <input
+           onChange={(e)=> handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle"/>
+              
                   <button
                     onClick={handleLogout}
                     className="text-red-600 hover:underline text-sm"
                   >
                     Log out
                   </button>
+
+                    
+                  </div>
+              
                 </div>
               )}
             </div>
