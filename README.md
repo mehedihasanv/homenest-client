@@ -2,7 +2,7 @@
 
 Welcome to **HomeNest**, a modern real estate listing platform where property owners can post rental or sale listings, and users can browse, search, and filter properties by location, price, or category.
 
-🔗 **Live Site:** [https://homenest-client.netlify.app](https://homenest-client.netlify.app)  
+🔗 **Live Site:** [https://magical-sable-9a6a36.netlify.app/]
 
 
 

@@ -5,24 +5,24 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, signOutFunction } = useContext(AuthContext);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
-    const html = document.querySelector('html')
-     html.setAttribute("data-theme", theme)
-     localStorage.setItem("theme", theme)
-  }, [theme])
-
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const handleTheme = (checked) => {
-    setTheme(checked ? "dark": "light")
-  }
+    setTheme(checked ? "dark" : "light");
+  };
 
   const handleLogout = () => {
     signOutFunction()
       .then(() => toast.success("Logged out successfully"))
-      .catch((err) => toast.error("Logout failed"));
+      .catch(() => toast.error("Logout failed"));
   };
 
   return (
@@ -43,20 +43,18 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden lg:flex gap-6 font-medium text-gray-700">
-          <NavLink to="/" className="hover:text-blue-500">Home</NavLink>
-          <NavLink to="/properties" className="hover:text-blue-500">All Properties</NavLink>
-              <NavLink to="/add-property" className="hover:text-blue-500">Add Property</NavLink>
-              <NavLink to="/my-properties" className="hover:text-blue-500">My Properties</NavLink>
-              <NavLink to="/my-ratings" className="hover:text-blue-500">My Ratings</NavLink>
-              
+          <li><NavLink to="/" className="hover:text-blue-500">Home</NavLink></li>
+          <li><NavLink to="/properties" className="hover:text-blue-500">All Properties</NavLink></li>
+          <li><NavLink to="/add-property" className="hover:text-blue-500">Add Property</NavLink></li>
+          <li><NavLink to="/my-properties" className="hover:text-blue-500">My Properties</NavLink></li>
+          <li><NavLink to="/my-ratings" className="hover:text-blue-500">My Ratings</NavLink></li>
         </ul>
 
         {/* Mobile Menu */}
-        <div className="lg:hidden dropdown">
+        <div className="lg:hidden relative">
           <button
-            tabIndex={0}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="btn btn-ghost"
-            onClick={() => setDropdownOpen(!dropdownOpen)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
               viewBox="0 0 24 24" stroke="currentColor">
@@ -64,13 +62,14 @@ const Navbar = () => {
                 d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          {dropdownOpen && (
-            <ul className="absolute right-6 top-16 bg-white shadow-lg rounded-lg p-4 w-52 z-50 space-y-2 text-gray-700">
-              <NavLink to="/" className="hover:text-blue-500">Home</NavLink>
-              <NavLink to="/properties" className="hover:text-blue-500">All Properties</NavLink>
-                  <NavLink to="/add-property" className="hover:text-blue-500">Add Property</NavLink>
-                  <NavLink to="/my-properties" className="hover:text-blue-500">My Properties</NavLink>
-                  <NavLink to="/my-ratings" className="hover:text-blue-500">My Ratings</NavLink>
+
+          {mobileMenuOpen && (
+            <ul className="absolute right-0 top-14 bg-white shadow-lg rounded-lg p-4 w-56 z-50 text-gray-800 space-y-2">
+              <li><NavLink to="/" className="hover:text-blue-500">Home</NavLink></li>
+              <li><NavLink to="/properties" className="hover:text-blue-500">All Properties</NavLink></li>
+              <li><NavLink to="/add-property" className="hover:text-blue-500">Add Property</NavLink></li>
+              <li><NavLink to="/my-properties" className="hover:text-blue-500">My Properties</NavLink></li>
+              <li><NavLink to="/my-ratings" className="hover:text-blue-500">My Ratings</NavLink></li>
             </ul>
           )}
         </div>
@@ -88,30 +87,26 @@ const Navbar = () => {
                 src={user?.photoURL || "https://via.placeholder.com/88"}
                 className="h-10 w-10 rounded-full cursor-pointer border-2 border-blue-300"
                 alt="user"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
               />
-              {dropdownOpen && (
+              {profileDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-56 bg-white border rounded-lg shadow-lg z-50 p-4">
-                  
                   <p className="text-sm font-semibold text-gray-800">{user.displayName}</p>
                   <p className="text-xs text-gray-500 mb-3">{user.email}</p>
-                  <div className="flex justify-between">
-                          <input
-           onChange={(e)=> handleTheme(e.target.checked)}
-           type="checkbox"
-           defaultChecked={localStorage.getItem('theme') === "dark"}
-           className="toggle"/>
-              
-                  <button
-                    onClick={handleLogout}
-                    className="text-red-600 hover:underline text-sm"
-                  >
-                    Log out
-                  </button>
-
-                    
+                  <div className="flex justify-between items-center">
+                    <input
+                      onChange={(e) => handleTheme(e.target.checked)}
+                      type="checkbox"
+                      defaultChecked={localStorage.getItem("theme") === "dark"}
+                      className="toggle"
+                    />
+                    <button
+                      onClick={handleLogout}
+                      className="text-red-600 hover:underline text-sm"
+                    >
+                      Log out
+                    </button>
                   </div>
-              
                 </div>
               )}
             </div>
@@ -123,4 +118,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

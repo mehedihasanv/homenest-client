@@ -13,7 +13,7 @@ const Estate = ({ estate }) => {
   } = estate;
 
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden">
+    <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden flex flex-col justify-between">
       <img
         src={image}
         alt={propertyName}
